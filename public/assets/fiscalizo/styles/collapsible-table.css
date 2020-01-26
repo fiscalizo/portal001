@@ -1,0 +1,62 @@
+/* table row selected */
+table.collapsible-table tbody tr.selected {
+    background-color: #f2f2f2 !important;
+}
+
+/*table.collapsible-table td {*/
+/*vertical-align: middle !important;*/
+/*}*/
+
+/* última coluna da tabela */
+table.collapsible-table td:last-child {
+    /*background-color: cyan;*/
+    width: 100px;
+}
+
+@media all and (max-width: 767px) {
+
+    /* TABLE */
+    table.collapsible-table {
+        border: 0;
+    }
+
+    table.collapsible-table caption {
+        font-size: 1.3em;
+    }
+
+    table.collapsible-table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table.collapsible-table tr {
+        /*border-bottom: 3px solid #f00;*/
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table.collapsible-table td {
+        /*border-bottom: 1px solid #ddd;*/
+        /*font-size: .8em;*/
+        display: block;
+        text-align: right;
+    }
+
+    table.collapsible-table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: 500;
+        color: #666; !important;
+    }
+
+    table.collapsible-table td:last-child {
+        /*background-color: green;*/
+        width: inherit;
+    }
+}

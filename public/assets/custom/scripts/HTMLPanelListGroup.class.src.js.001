@@ -1,0 +1,173 @@
+class HTMLPanelListGroup
+{
+    /**
+     * constructor...
+     *
+     * @param dataParent ID do elemento 'dataTarget'
+     * @param response Dataset do response
+     */
+    constructor(dataParent, response) {
+        /**
+         * ID do elemento 'dataParent'
+         *
+         * @type {string}
+         */
+        this.dataParent = dataParent;
+
+        /**
+         * Dataset do response
+         *
+         * @type {object}
+         */
+        this.response   = response;
+
+        /**
+         * Uploads
+         *
+         * @type {object}
+         */
+        this.uploads    = [];
+    }
+
+    get getHtml()
+    {
+        let anchors = '';
+
+        // varrer cada 'row' do dataset.
+        for (let i = 0; i < this.response.length; i++)
+        {
+            this.areaName = this.response[i]['name'];
+            this.areaAlias = this.response[i]['alias'];
+            this.documentos = this.response[i]['documentos'];
+            
+            // each new row of anchor
+            anchors += this.anchor();
+        }
+
+        // @deprecated
+        // return '<div class="panel list-group">' + anchors + '</div>';
+
+        return anchors;
+    }
+
+
+    anchor() {
+        return '<a href="javascript:void(0)" ' +
+            'class="list-group-item" ' +
+            'data-toggle="collapse" ' +
+            'data-target="#' + this.areaAlias + '" ' +
+            'data-parent="' + this.dataParent + '">' + this.areaName +
+            '<span id="counter-' + this.areaAlias + '" class="label label-info pull-right">0</span> ' +
+            '</a>' +
+            this.rowCollapse();
+    };
+
+
+    rowCollapse() {
+        return '<div id="' + this.areaAlias + '" class="collapse">' + this.htmlTable() + '</div>';
+    };
+
+    htmlTable() {
+        let dataTarget = this.areaAlias;
+
+
+        // html table string
+        let html = '';
+
+
+        //var auxiliar para ser utilizado no push do 'this.uploads'
+        let uploads = {};
+
+
+        // console.log('//==============================================');
+        // console.log('this.documentos.length: ', this.documentos.length);
+        // console.log('==============================================//');
+
+
+        if ( this.documentos.length === 1 ) {
+
+            // console.log('/=================================================');
+            // console.log('obj AREA + 1 documento: ', dataTarget);
+            // console.log('--------------------------------------------------');
+            // console.log(this.documentos);
+            // console.log('=================================================/');
+            // console.log('\n');
+
+
+            this.documentos.forEach(function (item) {
+                let table = new HTMLDataTable(dataTarget, item['upload'], ['ID', 'Arquivo', 'Enviado', 'Vencimento', 'Status', 'Download']);
+
+                html += table.table();
+
+                uploads['areaAlias'] = dataTarget;
+                uploads['files'] = item['upload'];
+            });
+
+        } else if (this.documentos.length >= 2) {
+
+            // console.log('/=================================================');
+            // console.log('obj AREA + multi documentos: ', dataTarget);
+            // console.log('--------------------------------------------------');
+            // console.log(this.documentos);
+            // console.log('=================================================/');
+            // console.log('\n');
+
+
+            let upload_files = [];
+
+
+            // para cada 'documento'...
+            this.documentos.forEach(function (item, key) {
+
+                // console.log('/=================================================');
+                // console.log('UPLOADS DO DOCUMENTO: ' + item['title']);
+                // console.log('--------------------------------------------------');
+                // console.log(item['upload']);
+                // console.log('=================================================/');
+                // console.log('\n');
+
+
+                // se há 'arquivos de upload' nesse documento...
+                if (item['upload'].length) {
+
+                    // para cada 'arquivo de upload' nesse documento...
+                    item['upload'].forEach(function (i, k) {
+
+                        upload_files.push(i);
+                    });
+                }
+            });
+
+
+            // console.log('/=================================================');
+            // console.log('UPLOADS APÓS CONSOLIDADO (upload_files):');
+            // console.log('--------------------------------------------------');
+            // console.log(upload_files);
+            // console.log('=================================================/');
+            // console.log('\n');
+
+
+            let table = new HTMLDataTable(dataTarget, upload_files, ['ID', 'Arquivo', 'Enviado', 'Vencimento', 'Status', 'Download']);
+            html += table.table();
+
+
+            uploads['areaAlias']    = dataTarget;
+            uploads['files']        = upload_files;
+
+
+        } else {
+
+            let table = new HTMLDataTable(dataTarget, [], ['ID', 'Arquivo', 'Enviado', 'Vencimento', 'Status', 'Download']);
+
+            html += HTMLDataTable.table();
+
+            uploads['areaAlias']    = dataTarget;
+            uploads['files']        = [];
+        }
+
+
+        this.uploads.push(uploads);
+
+        return html;
+    };
+}

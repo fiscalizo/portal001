@@ -1,0 +1,49 @@
+class HTMLDataTable
+{
+    element;
+    object;
+    column;
+    tableId;
+
+    /**
+     *
+     * @param element Element ID
+     * @param object Object dataset
+     * @param column Colunas da table (opcional)
+     */
+    constructor(element, object, column = []) {
+        this.element = element;
+        this.object = object;
+        this.column = column;
+
+        this.tableId = 'htmltable-' + element;
+    }
+
+    get getHtml() {
+        return this.table();
+    };
+
+    table = () => {
+        return '<table id="' + this.tableId + '" ' +
+            'class="table table-striped color-bordered-table info-bordered-table collapsible-table">' +
+            this.thead() + '</table>';
+    };
+
+    thead = () => {
+        let thead = "<thead>" + "<tr>";
+
+        for (let i = 0; i < this.colDataset.length; i++) {
+            thead += '<th scope="col">' + this.colDataset[i] + "</th>";
+        }
+
+        // adicionar mais uma coluna para 'buttons'.
+        thead += "<th nowrap></th>";
+        thead += "</tr></thead>";
+
+        return thead;
+    };
+
+    get colDataset() {
+        return (this.column.length) ? this.column : Object.keys(this.object[0]);
+    }
+}

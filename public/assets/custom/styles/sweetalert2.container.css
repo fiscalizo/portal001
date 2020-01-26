@@ -1,0 +1,29 @@
+.swal2-container { zoom: 1.25 !important; }
+
+.swal2-styled {
+    font-weight: inherit !important;
+    font-family: inherit !important;
+    /*margin: .3125em;*/
+    /*padding: .625em 2em;*/
+    /*box-shadow: none;*/
+}
+
+#swal2-title {
+    font-weight: inherit !important;
+    font-family: inherit !important;
+}
+
+#swal2-content {
+    font-weight: inherit !important;
+    font-family: inherit !important;
+}
+
+/*.swal2-popup {*/
+    /*font-size: 1.6rem !important;*/
+/*}*/
+
+/*.swal2-icon {*/
+/*width: 5em !important;*/
+/*height: 5em !important;*/
+/*border-width: .25em !important;*/
+/*}*/

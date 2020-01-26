@@ -1,0 +1,15 @@
+:root {
+    --text-color: black;
+    --background-color: orange;
+}
+
+.modal-template table {
+    /*background: #0b97c4;*/
+    background-color: red;
+    /*background: var(--background-color) !important;*/
+}
+
+.modal-template th {
+    background-color: var(--background-color) !important;
+    color: #fff;
+}

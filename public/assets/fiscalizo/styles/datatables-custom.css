@@ -1,0 +1,44 @@
+/* SEARCH */
+.dataTables_filter {
+    font-size: small;
+    text-align: left !important;
+}
+
+/* PAGINATE */
+.dataTables_paginate {
+    font-size: x-small;
+    text-align: center !important;
+}
+
+/* BUTTONS */
+.dt-buttons {
+    float: right !important;
+    white-space: nowrap;
+}
+
+@media all and (max-width: 767px) {
+
+    /* DROPDOWN */
+    .dataTables_length {
+        text-align: left !important;
+    }
+
+    /* SEARCH */
+    .dataTables_filter {
+        text-align: center !important;
+    }
+
+    /* PAGINATE */
+    .dataTables_paginate {
+        text-align: center !important;
+    }
+
+    /* BUTTONS */
+    .dt-buttons {
+        float: none !important;
+        text-align: center;
+    }
+
+}
+
+
