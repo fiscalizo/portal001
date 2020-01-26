@@ -1,4 +1,5 @@
 /* global Storage */
+/* version para cdn.jsdelivr.net */
 
 $(document).ready(function () {
     function store(name, val) {
