@@ -15,14 +15,14 @@ $(document).ready(function () {
         // console.log('15 : ' + currentTheme);
         store('theme', currentStyle);
         $('#theme').attr({
-            href: '/assets/ampleadmin/css/colors/' + currentStyle + '.css'
+            href: 'https://cdn.jsdelivr.net/gh/fiscalizo/portal001/public/assets/ampleadmin/css/colors/' + currentStyle + '.css'
         });
     });
 
     var currentTheme = get('theme');
     if (currentTheme) {
         $('#theme').attr({
-            href: '/assets/ampleadmin/css/colors/' + currentTheme + '.css'
+            href: 'https://cdn.jsdelivr.net/gh/fiscalizo/portal001/public/assets/ampleadmin/css/colors/' + currentTheme + '.css'
         });
     }
     // color selector
